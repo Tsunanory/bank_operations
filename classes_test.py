@@ -7,6 +7,7 @@ with open('operations.json') as file:
 
 last_executed = sorted(executed, key=lambda x: x.get('date', ''), reverse=True)
 one = last_executed[1]
+two = last_executed[0]
 
 
 def test_prepare_source():
@@ -14,6 +15,10 @@ def test_prepare_source():
                      one['to'], one['operationAmount']['amount'],
                      one['operationAmount']['currency']['name'])
     assert test.prepare_source(one['from']) == 'Visa Classic 2842 87** **** 9012'
+    test = operation(two['date'], two['description'], two['from'],
+                     two['to'], two['operationAmount']['amount'],
+                     two['operationAmount']['currency']['name'])
+    assert test.prepare_source(two['from']) == ''
 
 def test_prepare_destination():
     test = operation(one['date'], one['description'], one['from'],
@@ -32,3 +37,7 @@ def test___str__():
                      one['to'], one['operationAmount']['amount'],
                      one['operationAmount']['currency']['name'])
     assert test.__str__()
+    test = operation(two['date'], two['description'], two['from'],
+                     two['to'], two['operationAmount']['amount'],
+                     two['operationAmount']['currency']['name'])
+    assert test.prepare_source(two['from']) == ''
