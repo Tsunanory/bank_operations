@@ -7,12 +7,5 @@ with open('operations.json') as file:
 
 last_executed = sorted(executed, key=lambda x: x.get('date', ''))
 one = last_executed[0]
-two = last_executed[1]
-three = last_executed[2]
-four = last_executed[3]
-five = last_executed[4]
 
 
-
-# def test_processing():
-#     for 
